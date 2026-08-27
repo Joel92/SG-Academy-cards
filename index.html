@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>SG Padel Academy · Programación trimestral</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Sesiones del trimestre">
+      <a class="brand" href="#" aria-label="SG Padel Academy">
+        <img src="logo-sg-padel-academy-tight.png" alt="SG Padel Academy">
+      </a>
+
+      <div class="season-label">
+        <span>Programa trimestral</span>
+        <strong>24 sesiones</strong>
+      </div>
+
+      <label class="search-box">
+        <span class="sr-only">Buscar sesión</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+        <input id="sessionSearch" type="search" placeholder="Buscar golpe o sesión…">
+      </label>
+
+      <nav id="sessionList" class="session-list"></nav>
+
+      <div class="sidebar-footer">
+        <button class="ghost-button" id="exportBtn" type="button">Exportar copia</button>
+        <label class="ghost-button file-button">Importar<input id="importInput" type="file" accept="application/json"></label>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuBtn" type="button" aria-label="Abrir sesiones">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div class="crumb"><span>SG /</span><strong id="crumbTitle">Sesión</strong></div>
+        <div class="toolbar">
+          <button class="tool-button" id="editBtn" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24"><path d="m4 16-.8 4.8L8 20l11-11-4-4L4 16Zm9.5-9.5 4 4"/></svg>
+            <span>Editar</span>
+          </button>
+          <button class="tool-button primary" id="saveBtn" type="button">
+            <svg viewBox="0 0 24 24"><path d="M5 4h12l2 2v14H5V4Zm3 0v6h8V4M8 20v-7h8v7"/></svg>
+            <span>Guardar</span>
+          </button>
+          <button class="tool-button" id="printBtn" type="button">
+            <svg viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7v-7Z"/></svg>
+            <span>Imprimir</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="sheet-wrap">
+        <article class="training-sheet" id="trainingSheet">
+          <div class="sheet-hero">
+            <div class="session-index">
+              <span>SESIÓN</span>
+              <strong id="sessionNumber">01</strong>
+            </div>
+            <div class="session-heading">
+              <div class="session-brandline"><img src="logo-sg-padel-academy-tight.png" alt=""><span>Programación trimestral</span></div>
+              <h1 id="sessionTitle" data-editable></h1>
+              <p id="sessionObjective" class="session-objective" data-editable></p>
+            </div>
+            <div class="duration-stamp"><strong>75</strong><span>MIN</span><small>4 fases</small></div>
+          </div>
+
+          <div class="metadata-strip">
+            <label>Categoría
+              <select id="categoryField">
+                <option>Prebenjamín</option><option>Benjamín</option><option>Alevín</option>
+                <option>Infantil</option><option>Cadete</option><option>Juvenil / júnior</option>
+              </select>
+            </label>
+            <label>Nivel
+              <select id="levelField"><option>Iniciación</option><option>Intermedio</option><option>Alto</option></select>
+            </label>
+            <label>Fecha<input id="dateField" type="date"></label>
+            <label>Entrenador/a<input id="coachField" type="text" placeholder="Nombre"></label>
+          </div>
+
+          <section class="court-board" aria-label="Esquemas de pista">
+            <div class="court-panel">
+              <div class="court-label"><span>02</span><div><b>Técnica</b><small>Alimentación controlada</small></div></div>
+              <div class="court" id="techCourt" aria-label="Pista para ejercicio técnico"></div>
+            </div>
+            <div class="court-panel live-panel">
+              <div class="court-label"><span>03</span><div><b>Bola viva</b><small>Decisión y continuidad</small></div></div>
+              <div class="court" id="liveCourt" aria-label="Pista para ejercicio con bola viva"></div>
+            </div>
+          </section>
+
+          <section class="phase-grid" aria-label="Fases del entrenamiento">
+            <article class="phase phase-warmup">
+              <div class="phase-number">01</div>
+              <div class="phase-content"><header><h2>Calentamiento</h2><span>12 min</span></header><p id="warmupText" data-editable></p></div>
+            </article>
+            <article class="phase phase-technique">
+              <div class="phase-number">02</div>
+              <div class="phase-content"><header><h2>Técnica del golpe</h2><span>18 min</span></header><p id="techniqueText" data-editable></p></div>
+            </article>
+            <article class="phase phase-live">
+              <div class="phase-number">03</div>
+              <div class="phase-content"><header><h2>Bola viva</h2><span>25 min</span></header><p id="liveText" data-editable></p></div>
+            </article>
+            <article class="phase phase-match">
+              <div class="phase-number">04</div>
+              <div class="phase-content"><header><h2>Partido</h2><span>20 min</span></header><p id="matchText" data-editable></p></div>
+            </article>
+          </section>
+
+          <section class="adjustments">
+            <details open>
+              <summary><span>Ajustes por nivel</span><small>Iniciación · Intermedio · Alto</small></summary>
+              <p id="levelAdjustments" data-editable></p>
+            </details>
+            <details>
+              <summary><span>Adaptación por edad</span><small>Prebenjamín → Juvenil</small></summary>
+              <p id="ageAdjustments" data-editable></p>
+            </details>
+          </section>
+
+          <label class="notes-field"><span>Observaciones / respuesta del grupo</span><textarea id="notesField" rows="3" placeholder="Qué funcionó, qué modificar y qué retomar en la siguiente sesión…"></textarea></label>
+
+          <footer class="sheet-footer">
+            <span>SG PADEL ACADEMY</span><span id="sheetFooterTitle"></span><span>FICHA DE PISTA</span>
+          </footer>
+        </article>
+
+        <div class="sheet-nav">
+          <button id="prevBtn" type="button">← Sesión anterior</button>
+          <span id="navCount">01 / 24</span>
+          <button id="nextBtn" type="button">Sesión siguiente →</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
