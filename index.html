@@ -3,134 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0d0e">
-  <title>SG Padel Academy · Session Builder</title>
+  <meta name="theme-color" content="#111312">
+  <title>Guía de entrenamientos · SG Padel Academy</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body data-mode="plan">
+<body>
   <div class="app-shell">
-    <aside class="sidebar" id="sidebar" aria-label="Programa trimestral">
-      <a class="brand" href="#" aria-label="SG Padel Academy">
-        <img src="logo-sg-padel-academy-tight.png" alt="SG Padel Academy">
-      </a>
-
-      <div class="program-label"><span>Trimestre 01</span><strong>24 sesiones</strong></div>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="SG Padel Academy"><img src="logo-sg-padel-academy-tight.png" alt="SG Padel Academy"></a>
+      <div class="program-label"><span>Guía trimestral</span><strong>24 sesiones</strong></div>
       <label class="search-box">
-        <span class="sr-only">Buscar una sesión</span>
+        <span class="sr-only">Buscar sesión</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.5-4.5m2.5-5a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
-        <input id="sessionSearch" type="search" placeholder="Buscar objetivo o golpe…">
+        <input id="sessionSearch" type="search" placeholder="Buscar sesión…">
       </label>
-      <nav class="session-list" id="sessionList"></nav>
-      <div class="sidebar-tools">
-        <button id="exportBtn" type="button">Exportar</button>
-        <label>Importar<input id="importInput" type="file" accept="application/json"></label>
-      </div>
+      <nav class="session-list" id="sessionList" aria-label="Sesiones"></nav>
+      <p class="sidebar-note">Selecciona una sesión, adapta el grupo y edita únicamente lo que necesites.</p>
     </aside>
 
     <main class="workspace">
       <header class="topbar">
-        <button class="icon-btn mobile-menu" id="menuBtn" type="button" aria-label="Abrir programa">
+        <button class="icon-btn mobile-menu" id="menuBtn" type="button" aria-label="Abrir sesiones">
           <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-        <div class="mode-switch" aria-label="Modo de trabajo">
-          <button class="active" data-set-mode="plan" type="button">Planificar</button>
-          <button data-set-mode="court" type="button">Modo pista</button>
-        </div>
+        <p>Guía de entrenamiento</p>
         <div class="top-actions">
-          <button class="action-btn" id="editBtn" type="button" aria-pressed="false">
-            <svg viewBox="0 0 24 24"><path d="m4 16-.8 4.8L8 20l11-11-4-4L4 16Zm9.5-9.5 4 4"/></svg><span>Editar</span>
-          </button>
-          <button class="action-btn primary" id="saveBtn" type="button">
-            <svg viewBox="0 0 24 24"><path d="M5 4h12l2 2v14H5V4Zm3 0v6h8V4M8 20v-7h8v7"/></svg><span>Guardar</span>
-          </button>
-          <button class="action-btn" id="printBtn" type="button">
-            <svg viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7v-7Z"/></svg><span>Imprimir</span>
-          </button>
+          <button class="action-btn" id="editBtn" type="button" aria-pressed="false"><span>Editar</span></button>
+          <button class="action-btn primary" id="saveBtn" type="button"><span>Guardar</span></button>
+          <button class="action-btn" id="printBtn" type="button"><span>Imprimir</span></button>
         </div>
       </header>
 
-      <section class="session-page">
+      <article class="session-page">
         <header class="session-header">
-          <div class="session-kicker"><span id="sessionNumber">01</span><b>Sesión</b></div>
+          <div class="session-number"><span>Sesión</span><strong id="sessionNumber">01</strong></div>
           <div class="session-copy">
-            <p id="sessionBlock">Bloque · Control y espacio</p>
+            <p id="sessionBlock">Bloque 1 · Control y espacio</p>
             <h1 id="sessionTitle" data-editable></h1>
-            <div class="objective-line"><span>Objetivo de juego</span><p id="sessionObjective" data-editable></p></div>
+            <div class="objective"><b>Objetivo</b><p id="sessionObjective" data-editable></p></div>
           </div>
-          <div class="total-time"><strong id="totalMinutes">70</strong><span>minutos</span></div>
+          <div class="duration"><strong>75</strong><span>min</span></div>
         </header>
 
-        <section class="setup-bar" aria-label="Configuración del grupo">
+        <section class="group-bar" aria-label="Adaptación del grupo">
           <label>Categoría
-            <select id="categoryField">
-              <option>Prebenjamín</option><option>Benjamín</option><option selected>Alevín</option>
-              <option>Infantil</option><option>Cadete</option><option>Juvenil / júnior</option>
-            </select>
+            <select id="categoryField"><option>Prebenjamín</option><option>Benjamín</option><option selected>Alevín</option><option>Infantil</option><option>Cadete</option><option>Juvenil</option></select>
           </label>
           <label>Nivel
             <select id="levelField"><option>Iniciación</option><option selected>Intermedio</option><option>Alto</option></select>
           </label>
-          <label>Jugadores<input id="playersField" type="number" min="2" max="12" value="4"></label>
-          <label>Pistas<input id="courtsField" type="number" min="1" max="4" value="1"></label>
-          <label class="coach-field">Entrenador/a<input id="coachField" type="text" placeholder="Nombre"></label>
+          <div class="adaptation"><span>Adaptación recomendada</span><p id="adaptationText"></p></div>
         </section>
 
-        <nav class="phase-timeline" id="phaseTimeline" aria-label="Secuencia del entrenamiento"></nav>
-
-        <section class="coach-layout">
-          <article class="court-stage">
-            <header class="stage-header">
-              <div><span id="activePhaseIndex">01</span><div><p id="activePhaseLabel">Activación</p><h2 id="activeTaskTitle" data-editable></h2></div></div>
-              <div class="timer" aria-label="Cronómetro">
-                <span id="timerDisplay">10:00</span>
-                <button id="timerToggle" type="button">Iniciar</button>
-                <button id="timerReset" type="button" aria-label="Reiniciar cronómetro">↺</button>
-              </div>
-            </header>
-
-            <div class="court-canvas" id="courtCanvas" aria-label="Pista interactiva"></div>
-            <div class="court-legend">
-              <span><i class="home-dot"></i>Pareja</span><span><i class="rival-dot"></i>Rivales</span>
-              <span><i class="coach-dot"></i>Entrenador</span><span><i class="target-dot"></i>Objetivo</span>
-              <em id="dragHint">Activa Editar para mover los elementos</em>
-            </div>
-          </article>
-
-          <aside class="task-panel">
-            <section class="task-brief">
-              <span>Qué buscamos</span>
-              <p id="taskBrief" data-editable></p>
-            </section>
-
-            <dl class="operations">
-              <div><dt>Organización</dt><dd id="taskOrganization" data-editable></dd></div>
-              <div><dt>Cómo empieza</dt><dd id="taskStart" data-editable></dd></div>
-              <div><dt>Cómo continúa</dt><dd id="taskContinue" data-editable></dd></div>
-              <div><dt>Puntuación / reto</dt><dd id="taskScoring" data-editable></dd></div>
-              <div><dt>Correcciones</dt><dd id="taskCoaching" data-editable></dd></div>
-            </dl>
-
-            <section class="applied-version">
-              <header><span>Versión aplicada</span><b id="versionLabel">Alevín · Intermedio</b></header>
-              <p id="versionText"></p>
-            </section>
-
-            <div class="variants">
-              <button id="easierBtn" type="button"><span>−</span><div><b>Más fácil</b><small id="easierText" data-editable></small></div></button>
-              <button id="harderBtn" type="button"><span>+</span><div><b>Más difícil</b><small id="harderText" data-editable></small></div></button>
-            </div>
-          </aside>
-        </section>
+        <section class="guide-grid" id="guideGrid" aria-label="Desarrollo de la sesión"></section>
 
         <footer class="session-footer">
-          <label>Observaciones de la sesión<textarea id="notesField" rows="2" placeholder="Qué funcionó, qué modificar y qué retomar…"></textarea></label>
-          <div class="session-nav"><button id="prevBtn" type="button">← Anterior</button><span id="navCount">01 / 24</span><button id="nextBtn" type="button">Siguiente →</button></div>
+          <label>Notas del entrenador
+            <textarea id="notesField" rows="2" placeholder="Material, ajustes o aspectos a retomar…"></textarea>
+          </label>
+          <nav class="session-nav" aria-label="Navegación entre sesiones">
+            <button id="prevBtn" type="button">← Anterior</button><span id="navCount">01 / 24</span><button id="nextBtn" type="button">Siguiente →</button>
+          </nav>
         </footer>
-      </section>
+      </article>
     </main>
   </div>
-
+  <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" aria-label="Cerrar sesiones"></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="data.js"></script>
   <script src="app.js"></script>
